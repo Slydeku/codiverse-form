@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formulario de servicios – Codiverse</title>
+<meta name="description" content="Cuéntanos qué necesitas: página web, comunicación y marketing digital o templates automatizados.">
+<link rel="icon" href="icono.png">
+<style>
+  :root{--navy:#121540;--purple:#7C5CFF;--yellow:#FFD166;--lilac:#F1EEFF;--text:#1E2033;--muted:#5C607A;--line:#C9CBD9}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',Roboto,Arial,sans-serif;background:var(--lilac);color:var(--text);line-height:1.4}
+  .wrap{max-width:720px;margin:0 auto;padding:16px}
+  .banner{border-radius:14px;overflow:hidden;background:var(--navy)}
+  .banner img{display:block;width:100%;height:auto}
+  .card{background:#fff;border-radius:14px;padding:20px 22px;margin-top:14px;border-top:6px solid var(--purple);box-shadow:0 1px 3px rgba(18,21,64,.08)}
+  .card.intro{border-top-color:var(--yellow)}
+  h1{margin:0 0 6px;font-size:26px;color:var(--navy)}
+  h2{margin:0 0 4px;font-size:20px;color:var(--purple)}
+  p.sub{margin:0;color:var(--muted)}
+  .q{margin-top:18px}
+  .t{display:block;font-weight:600;margin-bottom:8px}
+  .help{display:block;color:var(--muted);font-size:14px;margin:-4px 0 8px}
+  .req{color:#D93025}
+  input[type=text],input[type=tel],textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:16px}
+  input:focus,textarea:focus{outline:2px solid var(--purple);border-color:var(--purple)}
+  textarea{min-height:84px;resize:vertical}
+  .opt{display:flex;align-items:center;gap:10px;padding:8px 0;cursor:pointer}
+  .opt input{width:20px;height:20px;flex:none;accent-color:var(--purple);margin:0}
+  .otro input[type=text]{flex:1}
+  .hidden{display:none}
+  button{margin-top:18px;width:100%;background:var(--purple);color:#fff;border:0;border-radius:10px;padding:14px 26px;font:inherit;font-weight:700;font-size:17px;cursor:pointer}
+  button:hover{background:#6a49f5}
+  button:disabled{opacity:.6;cursor:wait}
+  @media(min-width:600px){button{width:auto}}
+  .err{color:#D93025;margin-top:12px;font-weight:600}
+  .ok{text-align:center;padding:40px 22px}
+  .ok h1{color:var(--purple)}
+  .foot{text-align:center;color:var(--muted);font-size:13px;margin:18px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="banner"><img src="logo-codiverse.png" alt="Codiverse – Tu marca en órbita"></div>
+
+  <form id="f" novalidate>
+    <div class="card intro">
+      <h1>Formulario de servicios</h1>
+      <p class="sub">Codiverse, tu marca en órbita.</p>
+      <div class="q"><label class="t" for="nombre">Nombre <span class="req">*</span></label><input type="text" id="nombre" name="nombre" autocomplete="name"></div>
+      <div class="q"><label class="t" for="telefono">Teléfono <span class="req">*</span></label><input type="tel" id="telefono" name="telefono" autocomplete="tel"></div>
+      <div class="q"><span class="t">¿Qué servicios le gustaría? <span class="req">*</span></span>
+        <span class="help">Puede escoger más de uno.</span>
+        <label class="opt"><input type="checkbox" name="servicios" value="Página Web">Página Web</label>
+        <label class="opt"><input type="checkbox" name="servicios" value="Comunicación y Marketing Digital">Comunicación y Marketing Digital</label>
+        <label class="opt"><input type="checkbox" name="servicios" value="Template (Power BI, Excel automatizados)">Template (Power BI, Excel automatizados)</label>
+      </div>
+    </div>
+
+    <div class="card hidden" id="sec-web">
+      <h2>Página Web</h2>
+      <div class="q"><label class="t" for="web_negocio">¿Qué es su negocio?</label>
+        <span class="help">Cuéntenos a qué se dedica y qué productos o servicios ofrece.</span>
+        <textarea id="web_negocio" name="web_negocio"></textarea></div>
+      <div class="q"><label class="t" for="web_funcion">¿Qué función desearía que haga la página?</label><textarea id="web_funcion" name="web_funcion"></textarea></div>
+      <div class="q"><label class="t" for="web_colores">¿Qué colores le gustaría en la página?</label><input type="text" id="web_colores" name="web_colores"></div>
+      <div class="q"><span class="t">¿Es para uso personal o para un público?</span>
+        <label class="opt"><input type="checkbox" name="web_uso" value="Uso personal">Uso personal</label>
+        <label class="opt"><input type="checkbox" name="web_uso" value="Para un público">Para un público</label></div>
+      <div class="q"><span class="t">¿Móvil o web?</span>
+        <label class="opt"><input type="radio" name="web_plataforma" value="Móvil">Móvil</label>
+        <label class="opt"><input type="radio" name="web_plataforma" value="Web">Web</label>
+        <label class="opt"><input type="radio" name="web_plataforma" value="Ambos">Ambos</label></div>
+      <div class="q"><label class="t" for="web_adicional">¿Qué otra cosa adicional le gustaría añadir?</label><textarea id="web_adicional" name="web_adicional"></textarea></div>
+    </div>
+
+    <div class="card hidden" id="sec-com">
+      <h2>Comunicación y Marketing Digital</h2>
+      <div class="q"><span class="t">¿Qué servicios le interesan?</span>
+        <span class="help">Puede escoger más de uno.</span>
+        <label class="opt"><input type="checkbox" name="com_servicios" value="Asesoría en comunicación estratégica y relaciones públicas">Asesoría en comunicación estratégica y relaciones públicas</label>
+        <label class="opt"><input type="checkbox" name="com_servicios" value="Redacción y edición de textos">Redacción y edición de textos</label>
+        <label class="opt"><input type="checkbox" name="com_servicios" value="Gestión de eventos">Gestión de eventos</label>
+        <label class="opt"><input type="checkbox" name="com_servicios" value="Manejo de redes sociales y community">Manejo de redes sociales y community</label>
+        <label class="opt"><input type="checkbox" name="com_servicios" value="Creación de contenido">Creación de contenido</label>
+        <label class="opt"><input type="checkbox" name="com_servicios" value="Manejo de Meta Ads">Manejo de Meta Ads</label></div>
+      <div class="q"><span class="t">¿Qué red social le gustaría los servicios?</span>
+        <label class="opt"><input type="checkbox" name="redes" value="Facebook">Facebook</label>
+        <label class="opt"><input type="checkbox" name="redes" value="Instagram">Instagram</label>
+        <label class="opt"><input type="checkbox" name="redes" value="TikTok">TikTok</label>
+        <div class="opt otro"><input type="checkbox" id="redes_otro_chk" aria-label="Otra red social">Otro: <input type="text" id="redes_otro" placeholder="Mencionar"></div></div>
+      <div class="q"><span class="t">Publicaciones</span>
+        <label class="opt"><input type="checkbox" name="publicaciones" value="Diarias">Diarias</label>
+        <label class="opt"><input type="checkbox" name="publicaciones" value="Semanales">Semanales</label>
+        <label class="opt"><input type="checkbox" name="publicaciones" value="Mensuales">Mensuales</label></div>
+      <div class="q"><label class="t" for="cantidad">Cantidad de publicaciones</label><input type="text" id="cantidad" name="cantidad"></div>
+      <div class="q"><span class="t">¿Desea diseño de logos?</span>
+        <label class="opt"><input type="radio" name="logos" value="Sí">Sí</label>
+        <label class="opt"><input type="radio" name="logos" value="No">No</label></div>
+      <div class="q"><span class="t">¿Posters?</span>
+        <label class="opt"><input type="radio" name="posters" value="Sí">Sí</label>
+        <label class="opt"><input type="radio" name="posters" value="No">No</label></div>
+    </div>
+
+    <div class="card hidden" id="sec-template">
+      <h2>Template (Power BI, Excel automatizados)</h2>
+      <div class="q"><span class="t">¿Qué template le gustaría?</span>
+        <label class="opt"><input type="checkbox" name="templates" value="Excel - Manejo de gastos">Excel - Manejo de gastos</label>
+        <label class="opt"><input type="checkbox" name="templates" value="Power BI - Manejo de gastos">Power BI - Manejo de gastos</label>
+        <label class="opt"><input type="checkbox" name="templates" value="Customizado de algún tema">Customizado de algún tema</label></div>
+      <div class="q hidden" id="q-tema"><label class="t" for="template_tema">¿De qué tema?</label><input type="text" id="template_tema" name="template_tema"></div>
+    </div>
+
+    <div class="err" id="err" role="alert"></div>
+    <button type="submit" id="btn">Enviar</button>
+  </form>
+
+  <div class="card ok hidden" id="gracias">
+    <h1>¡Gracias!</h1>
+    <p class="sub">Recibimos tu información. Pronto nos comunicaremos contigo.</p>
+  </div>
+  <div class="foot">Codiverse · Tu marca en órbita</div>
+</div>
+
+<script>
+  // Enlace de tu script de Google (la "URL de la aplicación web" que termina en /exec)
+  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwUEF1spg4C4JqfyFbJK0xHUJ-5btp8T_sDdaP_0Ddaz7EsjS68H-iUKSnhnr01hyif/exec';
+
+  var f = document.getElementById('f');
+  var SERV = { web: 'Página Web', com: 'Comunicación y Marketing Digital', tpl: 'Template (Power BI, Excel automatizados)' };
+
+  function marcados(n){ return Array.prototype.map.call(f.querySelectorAll('input[name="'+n+'"]:checked'), function(i){ return i.value; }); }
+  function val(id){ return document.getElementById(id).value.trim(); }
+
+  function mostrar(){
+    var s = marcados('servicios');
+    document.getElementById('sec-web').classList.toggle('hidden', s.indexOf(SERV.web) < 0);
+    document.getElementById('sec-com').classList.toggle('hidden', s.indexOf(SERV.com) < 0);
+    document.getElementById('sec-template').classList.toggle('hidden', s.indexOf(SERV.tpl) < 0);
+    document.getElementById('q-tema').classList.toggle('hidden', marcados('templates').indexOf('Customizado de algún tema') < 0);
+  }
+  f.addEventListener('change', mostrar);
+  document.getElementById('redes_otro').addEventListener('input', function(){ document.getElementById('redes_otro_chk').checked = this.value.trim() !== ''; });
+
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var err = document.getElementById('err'); err.textContent = '';
+    var s = marcados('servicios');
+    var d = { nombre: val('nombre'), telefono: val('telefono'), servicios: s.join(', ') };
+    if(!d.nombre || !d.telefono){ err.textContent = 'Por favor escribe tu nombre y tu teléfono.'; return; }
+    if(!s.length){ err.textContent = 'Por favor escoge al menos un servicio.'; return; }
+
+    if(s.indexOf(SERV.web) >= 0){
+      d.web_negocio = val('web_negocio'); d.web_funcion = val('web_funcion'); d.web_colores = val('web_colores');
+      d.web_uso = marcados('web_uso').join(', '); d.web_plataforma = marcados('web_plataforma').join('');
+      d.web_adicional = val('web_adicional');
+    }
+    if(s.indexOf(SERV.com) >= 0){
+      var r = marcados('redes'), otro = val('redes_otro');
+      if(document.getElementById('redes_otro_chk').checked && otro) r.push('Otro: ' + otro);
+      d.com_servicios = marcados('com_servicios').join(', ');
+      d.redes = r.join(', '); d.publicaciones = marcados('publicaciones').join(', ');
+      d.cantidad = val('cantidad'); d.logos = marcados('logos').join(''); d.posters = marcados('posters').join('');
+    }
+    if(s.indexOf(SERV.tpl) >= 0){
+      d.templates = marcados('templates').join(', ');
+      if(d.templates.indexOf('Customizado') >= 0) d.template_tema = val('template_tema');
+    }
+
+    var b = document.getElementById('btn'); b.disabled = true; b.textContent = 'Enviando...';
+    fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(d) })
+      .then(function(){
+        f.classList.add('hidden');
+        document.getElementById('gracias').classList.remove('hidden');
+        window.scrollTo(0, 0);
+      })
+      .catch(function(){
+        b.disabled = false; b.textContent = 'Enviar';
+        err.textContent = 'No se pudo enviar. Revisa tu conexión e intenta otra vez.';
+      });
+  });
+</script>
+</body>
+</html>
