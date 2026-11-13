@@ -22,12 +22,14 @@
   .t{display:block;font-weight:600;margin-bottom:8px}
   .help{display:block;color:var(--muted);font-size:14px;margin:-4px 0 8px}
   .req{color:#D93025}
-  input[type=text],input[type=tel],textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:16px}
+  input[type=text],input[type=tel],input[type=email],textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:16px}
   input:focus,textarea:focus{outline:2px solid var(--purple);border-color:var(--purple)}
   textarea{min-height:84px;resize:vertical}
   .opt{display:flex;align-items:center;gap:10px;padding:8px 0;cursor:pointer}
   .opt input{width:20px;height:20px;flex:none;accent-color:var(--purple);margin:0}
   .otro input[type=text]{flex:1}
+  .consent{align-items:flex-start;font-size:14px;color:var(--muted);border-top:1px solid #E6E7EF;padding-top:14px}
+  .consent input{margin-top:2px}
   .hidden{display:none}
   button{margin-top:18px;width:100%;background:var(--purple);color:#fff;border:0;border-radius:10px;padding:14px 26px;font:inherit;font-weight:700;font-size:17px;cursor:pointer}
   button:hover{background:#6a49f5}
@@ -49,12 +51,14 @@
       <p class="sub">Codiverse, tu marca en órbita.</p>
       <div class="q"><label class="t" for="nombre">Nombre <span class="req">*</span></label><input type="text" id="nombre" name="nombre" autocomplete="name"></div>
       <div class="q"><label class="t" for="telefono">Teléfono <span class="req">*</span></label><input type="tel" id="telefono" name="telefono" autocomplete="tel"></div>
+      <div class="q"><label class="t" for="email">Correo electrónico</label><input type="email" id="email" name="email" autocomplete="email" inputmode="email"></div>
       <div class="q"><span class="t">¿Qué servicios le gustaría? <span class="req">*</span></span>
         <span class="help">Puede escoger más de uno.</span>
         <label class="opt"><input type="checkbox" name="servicios" value="Página Web">Página Web</label>
         <label class="opt"><input type="checkbox" name="servicios" value="Comunicación y Marketing Digital">Comunicación y Marketing Digital</label>
         <label class="opt"><input type="checkbox" name="servicios" value="Template (Power BI, Excel automatizados)">Template (Power BI, Excel automatizados)</label>
       </div>
+      <div class="q"><label class="opt consent"><input type="checkbox" id="consentimiento">Deseo recibir mensajes y correos de Codiverse para asuntos relacionados a orientación, asesoría, facturación y comunicaciones promocionales.</label></div>
     </div>
 
     <div class="card hidden" id="sec-web">
@@ -146,8 +150,10 @@
     e.preventDefault();
     var err = document.getElementById('err'); err.textContent = '';
     var s = marcados('servicios');
-    var d = { nombre: val('nombre'), telefono: val('telefono'), servicios: s.join(', ') };
+    var d = { nombre: val('nombre'), telefono: val('telefono'), email: val('email'), servicios: s.join(', '),
+      consentimiento: document.getElementById('consentimiento').checked ? 'Sí' : 'No' };
     if(!d.nombre || !d.telefono){ err.textContent = 'Por favor escribe tu nombre y tu teléfono.'; return; }
+    if(d.email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email)){ err.textContent = 'Revisa que el correo electrónico esté bien escrito.'; return; }
     if(!s.length){ err.textContent = 'Por favor escoge al menos un servicio.'; return; }
 
     if(s.indexOf(SERV.web) >= 0){
